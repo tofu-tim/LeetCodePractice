@@ -1,0 +1,29 @@
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+
+let nums = [2, 7, 11, 15];
+let target = 9;
+
+var twoSum = function(nums, target) {
+    let twoSumArray = [];
+    let remainder = 0;
+    let remainderIndex = -1; // Initialize with -1 to check if a valid index is found
+
+    for (let i = 0; i < nums.length; i++) {
+        remainder = target - nums[i];
+        remainderIndex = nums.indexOf(remainder);
+
+        if (remainderIndex !== -1 && remainderIndex !== i) {
+            twoSumArray.push(i);
+            twoSumArray.push(remainderIndex);
+            break;
+        }
+    }
+
+    return twoSumArray;
+};
+
+console.log(twoSum(nums, target));
