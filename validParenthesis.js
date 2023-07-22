@@ -12,13 +12,13 @@
 function isValid(string) {
     var leftSymbols = [];
     for (let i = 0; i < string.length; i++) {
-        if (string[i] == '(' && string[i] == '[' && string[i] == '[') {
-            leftSymbols.push(string[i])
-        } else if (string[i] == ')' && leftSymbols.length !== 0 && leftSymbols[leftSymbols.length - 1] === '(') {
+        if (string[i] === '(' || string[i] === '{' || string[i] === '[') {
+            leftSymbols.push(string[i]);
+        } else if (string[i] === ')' && leftSymbols.length !== 0 && leftSymbols[leftSymbols.length - 1] === '(') {
             leftSymbols.pop();
-        } else if (string[i] == '}' && leftSymbols.length !== 0 && leftSymbols[leftSymbols.length - 1] === '{') {
+        } else if (string[i] === '}' && leftSymbols.length !== 0 && leftSymbols[leftSymbols.length - 1] === '{') {
             leftSymbols.pop();
-        } else if (string[i] == ']' && leftSymbols.length !== 0 && leftSymbols[leftSymbols.length - 1] === '[') {
+        } else if (string[i] === ']' && leftSymbols.length !== 0 && leftSymbols[leftSymbols.length - 1] === '[') {
             leftSymbols.pop();
         } else {
             return false;
@@ -27,12 +27,12 @@ function isValid(string) {
     return leftSymbols.length === 0;
 }
 
-test1 = isValid("{{{{}}}}")
-test2 = isValid("(){}[]")
-test3 = isValid("({[]})")
-test4 = isValid("(}(){}[]")
+test1 = isValid("{{{{}}}}");
+test2 = isValid("(){}[]");
+test3 = isValid("({[]})");
+test4 = isValid("(}(){}[]");
 
-console.log(test1);
-console.log(test2);
-console.log(test3);
-console.log(test4);
+console.log(test1); // Output: true
+console.log(test2); // Output: true
+console.log(test3); // Output: true
+console.log(test4); // Output: false
