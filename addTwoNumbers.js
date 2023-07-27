@@ -2,7 +2,6 @@ function addTwoNumbers(list1, list2) {
     let newList = [];
     let newInt = 0;
 
-    // Create copies of the input lists to avoid modifying the original lists
     let list1Reversed = list1.slice().reverse();
     let list2Reversed = list2.slice().reverse();
 
@@ -25,14 +24,12 @@ function addTwoNumbers(list1, list2) {
 
     newInt = list1Integer + list2Integer;
 
-    return newInt;
+    console.log("New interger = " + newInt);
 
-    function reverseAndArrayify(newInt) {
-        newIntAsArray = ("" + newInt).split("");
-        console.log(newIntAsArray);
-        newArray = newIntAsArray.reverse()
-        return newArray;
-    }
+    let newIntAsArray = ("" + newInt).split("");
+    console.log(newIntAsArray);
+    newArray = newIntAsArray.reverse();
+    return newArray;
 }
 
 let test1 = addTwoNumbers([2, 4, 3], [5, 6, 4]);
