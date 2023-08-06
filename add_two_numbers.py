@@ -1,36 +1,30 @@
-def addTwoNumbers(list1, list2):
-    newList = []
-    newInt = 0
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-    list1Reversed = list1[::-1]
-    list2Reversed = list2[::-1]
+class Solution:
+    def addTwoNumbers(self, list1, list2):
+        carry = 0
+        dummy = ListNode()
+        current = dummy
 
-    # print("list1Reversed = " + (list1Reversed))
-    # print("list2Reversed = " + (list2Reversed))
+        while list1 or list2:
+            val1 = list1.val if list1 else 0
+            val2 = list2.val if list2 else 0
 
-    list1Integer = 0
-    for i in range(len(list1Reversed)):
-        list1Integer += list1Reversed[i] * (10 ** i)
+            total = val1 + val2 + carry
+            carry = total // 10
+            current.next = ListNode(total % 10)
 
+            if list1:
+                list1 = list1.next
+            if list2:
+                list2 = list2.next
 
-    # print("list1Interger = " + list1Integer)
+            current = current.next
 
-    list2Integer = 0
-    for i in range(len(list2Reversed)):
-        list2Integer += list2Reversed[i] * (10 ** i)
+        if carry:
+            current.next = ListNode(carry)
 
-
-    # print("list2Interger = " + list2Integer)
-
-    newInt = list1Integer + list2Integer
-
-    # print("New interger = " + newInt)
-
-    newIntAsArray = list(str(newInt))
-    newArray = newIntAsArray[::-1]
-    return newArray
-
-
-
-test1 = addTwoNumbers([2, 4, 3], [5, 6, 4])
-print(test1)
+        return dummy.next
